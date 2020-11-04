@@ -1,1 +1,4 @@
 requests~=2.24.0
+Pillow~=8.0.1
+instabot~=0.117.0
+python-dotenv~=0.14.0
