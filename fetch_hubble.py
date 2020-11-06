@@ -1,14 +1,13 @@
 import requests
 from fetch_spacex import get_image_extension, get_response, create_dir
-
+import os
 
 def fetch_habble(id):
-    create_dir()
     links = get_response(f'http://hubblesite.org/api/v3/image/{id}')
     picture_link = links['image_files'][-1]['file_url']
     response = requests.get('http:'+picture_link)
     response.raise_for_status()
-    with open(f'image/{id}.{get_image_extension(picture_link)}', 'wb') as file:
+    with open(f'{id}.{get_image_extension(picture_link)}', 'wb') as file:
         file.write(response.content)
 
 
@@ -18,6 +17,7 @@ def fetch_habble_collection(habble_collection='holiday_cards'):
     for photo in collection:
         collection_ids.append(photo['id'])
     print(f'Saving {len(collection_ids)} photos from Hubble')
+    os.chdir(create_dir())
     for number, id in enumerate(collection_ids):
         fetch_habble(id)
         print('Photo id:', id, 'saved.')

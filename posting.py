@@ -12,13 +12,13 @@ def transform_image(picture):
     if image.mode != 'RGB':
         image = image.convert('RGB')
     image.thumbnail((1080, 1080))
-    image.save(f'{picture}', format="JPEG")
+    image.save(picture, format="JPEG")
 
 
 def post_photo(photo, insta_login, insta_password):
     bot = instabot.Bot()
     bot.login(username=insta_login, password=insta_password)
-    bot.upload_photo(f'{photo}')
+    bot.upload_photo(photo)
     if bot.api.last_response.status_code != 200:
         logger.debug(bot.api.last_response)
 
