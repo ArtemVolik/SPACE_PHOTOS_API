@@ -52,15 +52,15 @@ def get_space_x_images_list():
                 return pictures_found_from_all
 
 
-def save_spacex_images(pictures_list, folder):
+def save_spacex_images(images, folder):
     os.chdir(folder)
-    print(f'Saving {len(pictures_list)} photos from SpaceX')
-    for picture_order, picture in enumerate(pictures_list):
-        response = requests.get(picture)
+    print(f'Saving {len(images)} photos from SpaceX')
+    for image_order, image in enumerate(images):
+        response = requests.get(image)
         response.raise_for_status()
-        with open(f'spacex{picture_order + 1}.{get_image_extension(picture)}', 'wb') as file:
+        with open(f'spacex{image_order + 1}.{get_image_extension(image)}', 'wb') as file:
             file.write(response.content)
-            print(f'Photo {picture_order} saved')
+            print(f'Photo {image_order} saved')
 
 
 def get_image_extension(url):
