@@ -5,7 +5,7 @@ import instabot
 from dotenv import load_dotenv
 import time
 from fetch_hubble import get_image_name
-
+import logging
 
 def transform_image(picture):
     image = Image.open(picture)
@@ -38,11 +38,11 @@ def post_photo(photo):
     bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(f'{photo}')
     if bot.api.last_response.status_code != 200:
-        print(bot.api.last_response)
+        logging.debug(bot.api.last_response)
 
 
 def main():
-    images_list = os.listdir('image')
+    logging.basicConfig(level=logging.DEBUG)
     os.chdir('image')
     for image in images_list:
         transform_image(image)
