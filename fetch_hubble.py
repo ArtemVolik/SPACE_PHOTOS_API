@@ -1,9 +1,6 @@
 import requests
 from fetch_spacex import get_image_extension, get_response, create_dir
 
-def get_image_name(name):
-    return ''.join(name.split('.')[:-1])
-
 
 def fetch_habble(id):
     create_dir('image')
