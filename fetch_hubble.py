@@ -6,7 +6,7 @@ from space_api_func import get_response, create_dir
 def fetch_habble(id):
     links = get_response(f'http://hubblesite.org/api/v3/image/{id}')
     picture_link = links['image_files'][-1]['file_url']
-    response = requests.get('http:'+picture_link)
+    response = requests.get(f'http:{picture_link}')
     response.raise_for_status()
     with open(f'{id}{os.path.splitext(picture_link)[1]}', 'wb') as file:
         file.write(response.content)
