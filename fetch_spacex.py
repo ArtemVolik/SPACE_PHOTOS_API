@@ -1,26 +1,11 @@
 import requests
 import os
-import argparse
+from space_api_func import create_dir, get_response
 
 urls = {
     'latest': 'https://api.spacexdata.com/v4/launches/latest',
     'all': 'https://api.spacexdata.com/v4/launches/'
 }
-
-
-def create_dir():
-    parser = argparse.ArgumentParser('Get photos from spacex last launch')
-    parser.add_argument('-f', '--folder', help='Enter folder name', default='image')
-    args = parser.parse_args()
-    os.makedirs(args.folder, exist_ok=True)
-    return args.folder
-
-
-def get_response(url):
-    response = requests.get(url)
-    response.raise_for_status()
-    answer = response.json()
-    return answer
 
 
 def search_images_array_in_json(search, search_key='flickr', pictures_found=[]):

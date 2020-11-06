@@ -20,11 +20,11 @@ def post_photo(photo, insta_login, insta_password):
     bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(photo)
     if bot.api.last_response.status_code != 200:
-        logger.debug(bot.api.last_response)
+        logger.info(bot.api.last_response)
 
 
 def main():
-    logging.basicConfig(level=logging.INFO)
+    logger.basicConfig(level=logging.INFO)
     load_dotenv()
     insta_login = os.getenv('INSTA_LOGIN')
     insta_password = os.getenv('INSTA_PASSWORD')

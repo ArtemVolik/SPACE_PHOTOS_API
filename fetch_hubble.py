@@ -1,6 +1,7 @@
 import requests
-from fetch_spacex import get_response, create_dir
 import os
+from space_api_func import get_response, create_dir
+
 
 def fetch_habble(id):
     links = get_response(f'http://hubblesite.org/api/v3/image/{id}')
