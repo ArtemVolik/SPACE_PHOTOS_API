@@ -12,8 +12,7 @@ def create_dir():
     parser = argparse.ArgumentParser('Get photos from spacex last launch')
     parser.add_argument('-f', '--folder', help='Enter folder name', default='image')
     args = parser.parse_args()
-    if not os.path.exists(args.folder):
-        os.mkdir(args.folder)
+    os.makedirs(args.folder, exist_ok=True)
     return args.folder
 
 
@@ -24,8 +23,8 @@ def get_response(url):
     return answer
 
 
-def search_images_array_in_json(search_dict, search_key='flickr', pictures_found=[]):
-    for key, value in search_dict.items():
+def search_images_array_in_json(search, search_key='flickr', pictures_found=[]):
+    for key, value in search.items():
         if key == search_key:
             pictures_found.append(value)
             return
