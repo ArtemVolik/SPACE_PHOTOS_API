@@ -1,5 +1,5 @@
 import requests
-from fetch_spacex import get_image_extension, get_response, create_dir
+from fetch_spacex import get_response, create_dir
 import os
 
 def fetch_habble(id):
@@ -7,7 +7,7 @@ def fetch_habble(id):
     picture_link = links['image_files'][-1]['file_url']
     response = requests.get('http:'+picture_link)
     response.raise_for_status()
-    with open(f'{id}.{get_image_extension(picture_link)}', 'wb') as file:
+    with open(f'{id}{os.path.splitext(picture_link)[1]}', 'wb') as file:
         file.write(response.content)
 
 

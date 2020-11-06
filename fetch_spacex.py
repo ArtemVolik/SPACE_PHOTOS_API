@@ -57,13 +57,9 @@ def save_spacex_images(images, folder):
     for image_order, image in enumerate(images):
         response = requests.get(image)
         response.raise_for_status()
-        with open(f'spacex{image_order + 1}.{get_image_extension(image)}', 'wb') as file:
+        with open(f'spacex{image_order + 1}{os.path.splitext(image)[1]}', 'wb') as file:
             file.write(response.content)
             print(f'Photo {image_order} saved')
-
-
-def get_image_extension(url):
-    return url.split('/')[-1].split('.')[-1]
 
 
 def fetch_spacex_last_launch():
@@ -74,3 +70,6 @@ def fetch_spacex_last_launch():
 
 if __name__ == '__main__':
     fetch_spacex_last_launch()
+
+
+
