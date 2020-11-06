@@ -3,7 +3,7 @@ from fetch_spacex import get_image_extension, get_response, create_dir
 
 
 def fetch_habble(id):
-    create_dir('image')
+    create_dir()
     links = get_response(f'http://hubblesite.org/api/v3/image/{id}')
     picture_link = links['image_files'][-1]['file_url']
     response = requests.get('http:'+picture_link)

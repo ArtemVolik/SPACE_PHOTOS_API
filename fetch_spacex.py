@@ -1,5 +1,6 @@
 import requests
 import os
+import argparse
 
 urls = {
     'latest': 'https://api.spacexdata.com/v4/launches/latest',
@@ -7,10 +8,13 @@ urls = {
 }
 
 
-def create_dir(dir_name):
-    if not os.path.exists(dir_name):
-        os.mkdir(dir_name)
-    return
+def create_dir():
+    parser = argparse.ArgumentParser('Get photos from spacex last launch')
+    parser.add_argument('-f', '--folder', help='Enter folder name', default='image')
+    args = parser.parse_args()
+    if not os.path.exists(args.folder):
+        os.mkdir(args.folder)
+    return args.folder
 
 
 def get_response(url):
@@ -48,8 +52,8 @@ def get_space_x_images_list():
                 return pictures_found_from_all
 
 
-def save_spacex_images(pictures_list):
-    os.chdir('image')
+def save_spacex_images(pictures_list, folder):
+    os.chdir(folder)
     print(f'Saving {len(pictures_list)} photos from SpaceX')
     for picture_order, picture in enumerate(pictures_list):
         response = requests.get(picture)
@@ -64,9 +68,9 @@ def get_image_extension(url):
 
 
 def fetch_spacex_last_launch():
-    create_dir('image')
+    folder = create_dir()
     pictures = get_space_x_images_list()
-    save_spacex_images(pictures)
+    save_spacex_images(pictures, folder)
 
 
 if __name__ == '__main__':
