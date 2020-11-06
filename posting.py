@@ -4,7 +4,6 @@ import instabot
 from dotenv import load_dotenv
 import time
 import logging
-from logging.handlers import RotatingFileHandler
 
 
 def transform_image(picture):
@@ -16,6 +15,7 @@ def transform_image(picture):
 
 
 def post_photo(photo, insta_login, insta_password):
+    logger = logging.getLogger(__name__)
     bot = instabot.Bot()
     bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(photo)
@@ -24,7 +24,6 @@ def post_photo(photo, insta_login, insta_password):
 
 
 def main():
-    logger.basicConfig(level=logging.INFO)
     load_dotenv()
     insta_login = os.getenv('INSTA_LOGIN')
     insta_password = os.getenv('INSTA_PASSWORD')
@@ -39,8 +38,4 @@ def main():
 
 
 if __name__ == '__main__':
-    logger = logging.getLogger("Insta API Logger")
-    logger.setLevel(logging.INFO)
-    handler = RotatingFileHandler("app_insta_api.log", maxBytes=200, backupCount=2)
-    logger.addHandler(handler)
     main()
