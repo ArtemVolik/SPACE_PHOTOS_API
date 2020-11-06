@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import time
 from fetch_hubble import get_image_name
 import logging
+from logging.handlers import RotatingFileHandler
 
 def transform_image(picture):
     image = Image.open(picture)
@@ -38,7 +39,7 @@ def post_photo(photo):
     bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(f'{photo}')
     if bot.api.last_response.status_code != 200:
-        logging.debug(bot.api.last_response)
+        logger.debug(bot.api.last_response)
 
 
 def main():
@@ -54,6 +55,10 @@ def main():
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger("Insta API Logger")
+    logger.setLevel(logging.INFO)
+    handler = RotatingFileHandler("app_insta_api.log", maxBytes=200, backupCount=2)
+    logger.addHandler(handler)
     main()
 
 
