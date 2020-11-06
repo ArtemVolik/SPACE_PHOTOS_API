@@ -15,10 +15,7 @@ def transform_image(picture):
     image.save(f'{picture}', format="JPEG")
 
 
-def post_photo(photo):
-    load_dotenv()
-    insta_login = os.getenv('INSTA_LOGIN')
-    insta_password = os.getenv('INSTA_PASSWORD')
+def post_photo(photo, insta_login, insta_password):
     bot = instabot.Bot()
     bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(f'{photo}')
@@ -27,15 +24,19 @@ def post_photo(photo):
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG)
-    os.chdir('image')
+    logging.basicConfig(level=logging.INFO)
+    load_dotenv()
+    insta_login = os.getenv('INSTA_LOGIN')
+    insta_password = os.getenv('INSTA_PASSWORD')
+    image_folder = os.getenv('IMAGE_FOLDER')
+    os.chdir(image_folder)
     images_list = os.listdir()
     for image in images_list:
         transform_image(image)
     images_list = os.listdir()
     for image in images_list:
         print('Posting', image)
-        post_photo(image)
+        post_photo(image, insta_login, insta_password)
         time.sleep(60)
 
 
