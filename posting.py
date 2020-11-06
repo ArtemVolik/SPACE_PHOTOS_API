@@ -32,10 +32,10 @@ def transform_image(picture):
 
 def post_photo(photo):
     load_dotenv()
-    INSTA_LOGIN = os.getenv('INSTA_LOGIN')
-    INSTA_PASSWORD = os.getenv('INSTA_PASSWORD')
+    insta_login = os.getenv('INSTA_LOGIN')
+    insta_password = os.getenv('INSTA_PASSWORD')
     bot = instabot.Bot()
-    bot.login(username=INSTA_LOGIN, password=INSTA_PASSWORD)
+    bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(f'{photo}')
     if bot.api.last_response.status_code != 200:
         print(bot.api.last_response)
