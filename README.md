@@ -18,8 +18,11 @@ selected instagram account.
  
 - Execute `python fetch_hubble.py` to get photos from the Hubble collection.
  
-- Both 'fetch' scripts  create  directory `image`  in script current destination directory 
-and put all photos there.
+- Both 'fetch' scripts  could be execute with -f parameter which allow you to specify
+directory for images saving. Example:  
+    `python fetch_hubble.py -f my_folder`  
+    will create `my_folder` folder and put all parsed images in it.
+if parameter -f not specified script will create by default folder `image`.
 
 - Script `posting.py` will post post all photos from image directory to specified instagram account.
 Due to Instagram policy some photos might be banned or library which script depends on might not
