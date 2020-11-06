@@ -33,11 +33,9 @@ def main():
     images_list = os.listdir()
     for image in images_list:
         transform_image(image)
-    images_list = os.listdir()
-    for image in images_list:
         print('Posting', image)
         post_photo(image, insta_login, insta_password)
-        time.sleep(60)
+        time.sleep(30)
 
 
 if __name__ == '__main__':
