@@ -32,8 +32,8 @@ def transform_image(picture):
 
 def post_photo(photo):
     load_dotenv()
-    INSTA_LOGIN = os.getenv('login')
-    INSTA_PASSWORD = os.getenv('password')
+    INSTA_LOGIN = os.getenv('INSTA_LOGIN')
+    INSTA_PASSWORD = os.getenv('INSTA_PASSWORD')
     bot = instabot.Bot()
     bot.login(username=INSTA_LOGIN, password=INSTA_PASSWORD)
     bot.upload_photo(f'{photo}')
