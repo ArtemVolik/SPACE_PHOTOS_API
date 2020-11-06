@@ -39,10 +39,10 @@ def get_space_x_images_list():
 def save_spacex_images(images, folder):
     os.chdir(folder)
     print(f'Saving {len(images)} photos from SpaceX')
-    for image_order, image in enumerate(images):
+    for image_order, image in enumerate(images, 1):
         response = requests.get(image)
         response.raise_for_status()
-        with open(f'spacex{image_order + 1}{os.path.splitext(image)[1]}', 'wb') as file:
+        with open(f'spacex{image_order}{os.path.splitext(image)[1]}', 'wb') as file:
             file.write(response.content)
             print(f'Photo {image_order} saved')
 
