@@ -23,8 +23,7 @@ selected instagram account.
 directory for images saving. Example:  
     `python fetch_hubble.py -f my_folder`  
     will create `my_folder` folder and put all parsed images in it.
-if parameter -f not specified script will create by default folder which specified in `IMAGE_FOLDER` 
-variable in `.env`.
+if parameter -f not specified script will create by default folder `image` in script destination directory.
 
 - Script `posting.py` will post post all photos from image directory to specified instagram account.
 Due to Instagram policy some photos might be banned or library which script depends on might not
