@@ -6,3 +6,4 @@ image
 config
 .gitattributes
 *.log
+my_options.py
