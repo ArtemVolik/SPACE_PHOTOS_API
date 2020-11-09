@@ -28,8 +28,7 @@ def main():
     insta_login = os.getenv('INSTA_LOGIN')
     insta_password = os.getenv('INSTA_PASSWORD')
     image_folder = os.getenv('IMAGE_FOLDER')
-    os.chdir(image_folder)
-    images = os.listdir()
+    images = os.listdir(image_folder)
     for image in images:
         transform_image(image)
         print('Posting', image)
