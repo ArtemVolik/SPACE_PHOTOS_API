@@ -7,9 +7,10 @@ selected instagram account.
  - Python dependencies file is `requirements.txt`.
  - Execute in command line `pip3 install -r requirements.txt` to install dependencies
  - You should put your instagram login and password in `.env` file at the same directory.  
-       `login='your_login'`    
-        `password='your_password'`
- 
+       `INSTA_LOGIN='your_login'`    
+       `INSTA_PASSWORD='your_password'`  
+       `IMAGE_FOLDER='default_name_image_folder'`
+
  
  ## How it works
  - Execute `python fetch_spacex.py` to get last spacex launch photos.
@@ -22,7 +23,8 @@ selected instagram account.
 directory for images saving. Example:  
     `python fetch_hubble.py -f my_folder`  
     will create `my_folder` folder and put all parsed images in it.
-if parameter -f not specified script will create by default folder `image`.
+if parameter -f not specified script will create by default folder which specified in `IMAGE_FOLDER` 
+variable in `.env`.
 
 - Script `posting.py` will post post all photos from image directory to specified instagram account.
 Due to Instagram policy some photos might be banned or library which script depends on might not
