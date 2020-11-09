@@ -4,7 +4,8 @@ import instabot
 from dotenv import load_dotenv
 import time
 import logging
-
+from space_api_func import create_dir
+logger = logging.getLogger(__file__)
 
 def transform_image(picture):
     image = Image.open(picture)
@@ -15,7 +16,6 @@ def transform_image(picture):
 
 
 def post_photo(photo, insta_login, insta_password):
-    logger = logging.getLogger(__name__)
     bot = instabot.Bot()
     bot.login(username=insta_login, password=insta_password)
     bot.upload_photo(photo)
@@ -27,14 +27,17 @@ def main():
     load_dotenv()
     insta_login = os.getenv('INSTA_LOGIN')
     insta_password = os.getenv('INSTA_PASSWORD')
-    image_folder = os.getenv('IMAGE_FOLDER')
-    images = os.listdir(image_folder)
-    for image in images:
-        transform_image(image)
+    for image in os.listdir(image_folder):
+        transform_image(f'{image_folder}/{image}')
         print('Posting', image)
-        post_photo(image, insta_login, insta_password)
+        post_photo(f'{image_folder}/{image}', insta_login, insta_password)
         time.sleep(30)
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.ERROR)
+    logger.setLevel(logging.DEBUG)
+    image_folder = create_dir()
     main()
+
+

@@ -2,10 +2,9 @@ import requests
 import os
 import argparse
 
-
 def create_dir():
     parser = argparse.ArgumentParser('Get photos from spacex last launch')
-    parser.add_argument('-f', '--folder', help='Enter folder name', default='image')
+    parser.add_argument('-f', '--folder', help='Enter folder path', default='image')
     args = parser.parse_args()
     os.makedirs(args.folder, exist_ok=True)
     return args.folder
