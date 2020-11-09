@@ -14,9 +14,7 @@ def fetch_habble(id):
 
 def fetch_habble_collection(habble_collection='holiday_cards'):
     collection = get_response(f'http://hubblesite.org/api/v3/images/{habble_collection}')
-    collection_ids = []
-    for photo in collection:
-        collection_ids.append(photo['id'])
+    collection_ids = [photo['id'] for photo in collection]
     print(f'Saving {len(collection_ids)} photos from Hubble')
     os.chdir(create_dir())
     for number, id in enumerate(collection_ids, 1):
