@@ -23,7 +23,7 @@ Due to Instagram policy some photos might be banned or library which script depe
 work. To run posting execute `python posting.py`.
  
 #### All scripts  could be execute with -f parameter which allow you to specify directory om your own.  
-#####Examples:  
+##### Examples:  
 `python fetch_hubble.py -f my_folder`  
 will create `my_folder` folder and put all parsed images in it.
 if parameter -f not specified script creating by default folder `image` in script destination directory.    
