@@ -1,5 +1,5 @@
 # SPACE INSTAGRAM
-Scrip get photos from space X last launches and Hubble collection and save them on 
+Script get photos from space X last launches and Hubble collection and save them on 
 selected instagram account.
 
 ## How to install:
